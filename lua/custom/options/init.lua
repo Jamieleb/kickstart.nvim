@@ -12,3 +12,4 @@ vim.opt.shiftwidth = 2
 vim.opt.autoindent = true
 
 vim.opt.signcolumn = "yes"
+vim.opt.wrap = false

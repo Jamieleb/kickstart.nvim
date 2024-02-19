@@ -116,7 +116,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -200,6 +200,8 @@ require('lazy').setup({
     opts = {},
   },
 
+  { "rose-pine/neovim",     name = "rose-pine" },
+
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -235,7 +237,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',  opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -569,7 +571,7 @@ require('which-key').register {
   ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
   ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
   ['<leader>l'] = { name = '[L]SP', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+  ['<leader>r'] = { name = '[R]un Tasks', _ = 'which_key_ignore' },
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
   ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[W]indow', _ = 'which_key_ignore' },
@@ -600,7 +602,7 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  tsserver = {},
+  tsserver = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
   html = { filetypes = { 'html', 'twig', 'hbs' } },
 
 
@@ -698,7 +700,7 @@ require 'custom.options'
 -- [[ Add Custom Key Bindings ]]
 require 'custom.keybindings'
 
-vim.cmd [[colorscheme tokyonight-storm]]
+vim.cmd [[colorscheme rose-pine-moon]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

@@ -4,14 +4,16 @@
 -- See the kickstart.nvim README for more information
 return {
   'autopairs.lua',
+  'buffer_manager.lua',
+  'conform.lua',
   'copilot.lua',
   'dashboard.lua',
   'fluromachine.lua',
-  'guard.lua',
   'lazygit.lua',
   'lspsaga.lua',
   'nvim-surround.lua',
   'octo.lua',
   'oil.lua',
+  'overseer.lua',
   'treesj.lua',
 }
