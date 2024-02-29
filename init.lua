@@ -200,6 +200,7 @@ require('lazy').setup({
     opts = {},
   },
 
+
   { "rose-pine/neovim",     name = "rose-pine" },
 
   {
@@ -700,7 +701,7 @@ require 'custom.options'
 -- [[ Add Custom Key Bindings ]]
 require 'custom.keybindings'
 
-vim.cmd [[colorscheme rose-pine-moon]]
+vim.cmd [[colorscheme tokyonight-storm]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

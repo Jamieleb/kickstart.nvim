@@ -11,9 +11,11 @@ return {
   'fluromachine.lua',
   'lazygit.lua',
   'lspsaga.lua',
+  'noice.lua',
   'nvim-surround.lua',
   'octo.lua',
   'oil.lua',
   'overseer.lua',
   'treesj.lua',
+  'ts-error-translator.lua',
 }

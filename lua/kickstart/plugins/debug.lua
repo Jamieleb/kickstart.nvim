@@ -49,6 +49,8 @@ return {
     vim.keymap.set('n', '<leader>dl', dap.step_over, { desc = 'Debug: Step Over' })
     vim.keymap.set('n', '<leader>dk', dap.step_out, { desc = 'Debug: Step Out' })
     vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
+    vim.keymap.set('n', '<leader>dq', dap.terminate, { desc = 'Debug: Terminate Debug Session' })
+    vim.keymap.set('n', '<leader>df', dap.float_element, { desc = 'Debug: Float Element' })
     vim.keymap.set('n', '<leader>dB', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set Breakpoint' })
@@ -76,7 +78,7 @@ return {
     }
 
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    vim.keymap.set('n', '<leader>dd', dapui.toggle, { desc = 'Debug: See last session result.' })
+    vim.keymap.set('n', '<leader>dd', dapui.toggle, { desc = 'Debug: Toggle Dap UI' })
 
     dap.adapters.coreclr = {
       type = 'executable',
@@ -89,6 +91,12 @@ return {
         type = 'coreclr',
         name = "launch - netcoredbg",
         request = 'launch',
+        env = {
+          ASPNETCORE_ENVIRONMENT = function()
+            -- todo: request input from ui
+            return "Development"
+          end,
+        },
         program = function()
           return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
         end,
