@@ -200,6 +200,7 @@ require('lazy').setup({
     opts = {},
   },
 
+  { "catppuccin/nvim",      name = "catppuccin", priority = 1000 },
 
   { "rose-pine/neovim",     name = "rose-pine" },
 
@@ -288,7 +289,7 @@ require('lazy').setup({
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
   require 'kickstart.plugins.autoformat',
-  require 'kickstart.plugins.debug',
+  -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
@@ -454,7 +455,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'gleam' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -518,6 +519,7 @@ vim.defer_fn(function()
 end, 0)
 
 -- [[ Configure LSP ]]
+require('lspconfig').gleam.setup({})
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
@@ -533,6 +535,7 @@ local on_attach = function(_, bufnr)
 
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
+
 
   -- Use LspSaga for this functionality
   -- nmap('<leader>lr', vim.lsp.buf.rename, '[R]ename')
@@ -576,7 +579,8 @@ require('which-key').register {
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
   ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[W]indow', _ = 'which_key_ignore' },
-  ['<leader>f'] = { name = '[F]ile', _ = 'which_key_ignore' }
+  ['<leader>f'] = { name = '[F]ile', _ = 'which_key_ignore' },
+  ['<leader>i'] = { name = 'A[I]', _ = 'which_key_ignore' }
 }
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
@@ -701,7 +705,7 @@ require 'custom.options'
 -- [[ Add Custom Key Bindings ]]
 require 'custom.keybindings'
 
-vim.cmd [[colorscheme tokyonight-storm]]
+vim.cmd [[colorscheme catppuccin]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

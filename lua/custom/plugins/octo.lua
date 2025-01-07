@@ -5,6 +5,7 @@ return {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
     },
+    enabled = false,
     opts = {
       enable_builtin = true,
       mappings = {

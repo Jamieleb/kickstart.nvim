@@ -50,7 +50,6 @@ return {
     vim.keymap.set('n', '<leader>dk', dap.step_out, { desc = 'Debug: Step Out' })
     vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
     vim.keymap.set('n', '<leader>dq', dap.terminate, { desc = 'Debug: Terminate Debug Session' })
-    vim.keymap.set('n', '<leader>df', dap.float_element, { desc = 'Debug: Float Element' })
     vim.keymap.set('n', '<leader>dB', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set Breakpoint' })
@@ -96,6 +95,9 @@ return {
             -- todo: request input from ui
             return "Development"
           end,
+          ASPNETCORE_URLS = function()
+            return "http://localhost:5109"
+          end
         },
         program = function()
           return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
