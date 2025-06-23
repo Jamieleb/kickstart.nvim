@@ -71,7 +71,7 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
   -- Git related plugins
-  'tpope/vim-fugitive',
+  -- 'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
@@ -116,7 +116,11 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  {
+    'folke/which-key.nvim',
+    opts = {},
+    dependencies = { { 'echasnovski/mini.icons', version = '*' } },
+  },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -200,9 +204,9 @@ require('lazy').setup({
     opts = {},
   },
 
-  { "catppuccin/nvim",      name = "catppuccin", priority = 1000 },
+  { "catppuccin/nvim",  name = "catppuccin", priority = 1000 },
 
-  { "rose-pine/neovim",     name = "rose-pine" },
+  { "rose-pine/neovim", name = "rose-pine" },
 
   {
     -- Set lualine as statusline
@@ -291,7 +295,7 @@ require('lazy').setup({
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
   require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping

@@ -12,6 +12,7 @@ return {
   -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
+    'nvim-neotest/nvim-nio',
     'rcarriga/nvim-dap-ui',
 
     -- Installs the debug adapters for you
@@ -38,8 +39,7 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
-        'netcoredbg'
+        'delve'
       },
     }
 
@@ -81,26 +81,25 @@ return {
 
     dap.adapters.coreclr = {
       type = 'executable',
-      command = '/usr/local/netcoredbg',
+      command = vim.fn.stdpath("data") .. '/lazy/netcoredbg-macOS-arm64.nvim/netcoredbg/netcoredbg',
       args = { '--interpreter=vscode' },
     }
 
     dap.configurations.cs = {
       {
         type = 'coreclr',
-        name = "launch - netcoredbg",
+        name = "launch - netcoredbg (my config)",
         request = 'launch',
         env = {
           ASPNETCORE_ENVIRONMENT = function()
-            -- todo: request input from ui
-            return "Development"
+            return vim.fn.input("ASPNETCORE_ENVIRONMENT: ", "Development")
           end,
           ASPNETCORE_URLS = function()
-            return "http://localhost:5109"
+            return vim.fn.input("ASPNETCORE_URL: ", "http://localhost:5109")
           end
         },
         program = function()
-          return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+          return vim.fn.input('Path to dll', vim.fn.getcwd(), 'file')
         end,
       }
     }

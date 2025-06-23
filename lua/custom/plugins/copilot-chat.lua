@@ -16,9 +16,5 @@ return {
         row = 1
       }
     },
-    keys = {
-      { "<leader>ii", "<cmd>CopilotChatToggle<cr>",       desc = "Toggle Copilot Chat" },
-      { "<leader>ic", "<cmd>CopilotChatCommitStaged<cr>", desc = "Write commit message for [S]taged changes" },
-    }
   }
 }
