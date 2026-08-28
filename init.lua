@@ -92,7 +92,7 @@ require('lazy').setup({
       { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
+      { 'folke/lazydev.nvim', opts = {} },
     },
   },
 
@@ -575,25 +575,22 @@ local on_attach = function(_, bufnr)
 end
 
 -- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
-  ['<leader>l'] = { name = '[L]SP', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]un Tasks', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]indow', _ = 'which_key_ignore' },
-  ['<leader>f'] = { name = '[F]ile', _ = 'which_key_ignore' },
-  ['<leader>i'] = { name = 'A[I]', _ = 'which_key_ignore' }
+require('which-key').add {
+  { '<leader>c', group = '[C]ode' },
+  { '<leader>d', group = '[D]ocument' },
+  { '<leader>g', group = '[G]it' },
+  { '<leader>h', group = 'Git [H]unk' },
+  { '<leader>l', group = '[L]SP' },
+  { '<leader>r', group = '[R]un Tasks' },
+  { '<leader>s', group = '[S]earch' },
+  { '<leader>t', group = '[T]oggle' },
+  { '<leader>w', group = '[W]indow' },
+  { '<leader>f', group = '[F]ile' },
+  { '<leader>i', group = 'A[I]' },
+  -- visual mode
+  { '<leader>', group = 'VISUAL <leader>', mode = 'v' },
+  { '<leader>h', desc = 'Git [H]unk', mode = 'v' },
 }
--- register which-key VISUAL mode
--- required for visual <leader>hs (hunk stage) to work
-require('which-key').register({
-  ['<leader>'] = { name = 'VISUAL <leader>' },
-  ['<leader>h'] = { 'Git [H]unk' },
-}, { mode = 'v' })
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
@@ -613,8 +610,8 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  tsserver = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
-  html = { filetypes = { 'html', 'twig', 'hbs' } },
+  ts_ls = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+  -- html = { filetypes = { 'html', 'twig', 'hbs' } },
 
 
   lua_ls = {
@@ -627,8 +624,7 @@ local servers = {
   },
 }
 
--- Setup neovim lua configuration
-require('neodev').setup()
+-- lazydev.nvim is set up via opts above (replaces neodev.nvim)
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -7,13 +7,11 @@ return {
         use_default_keymaps = false,
       })
 
-      require('which-key').register({
-        ["<leader>J"] = {
-          name = '+TreeS[J]',
-          J = { "<cmd>TSJToggle<CR>", 'Toggle under cursor' },
-          s = { "<cmd>TSJSplit<CR>", 'Split under cursor' },
-          j = { "<cmd>TSJJoin<CR>", 'Join under cursor' },
-        }
+      require('which-key').add({
+        { '<leader>J', group = '+TreeS[J]' },
+        { '<leader>JJ', '<cmd>TSJToggle<CR>', desc = 'Toggle under cursor' },
+        { '<leader>Js', '<cmd>TSJSplit<CR>', desc = 'Split under cursor' },
+        { '<leader>Jj', '<cmd>TSJJoin<CR>', desc = 'Join under cursor' },
       })
     end,
   }
